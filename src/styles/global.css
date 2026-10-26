@@ -493,6 +493,7 @@ button {
 /* ---------- Timeline ---------- */
 .timeline {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* lets long content shrink instead of widening the page */
   gap: 0.75rem;
 }
 .step,
@@ -594,6 +595,22 @@ button {
   overflow-wrap: anywhere;
   font-size: 0.92rem;
 }
+.rich-text p {
+  margin: 0.35rem 0;
+}
+.rich-text h4 {
+  font-size: 0.92rem;
+  margin: 0.8rem 0 0.2rem;
+}
+.rich-text .code {
+  margin: 0.4rem 0;
+}
+.rich-text code:not(.code code) {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+}
 
 .collapsible {
   margin-top: 0.5rem;
@@ -623,12 +640,20 @@ button {
 }
 
 /* ---------- Tool calls ---------- */
+.tools {
+  min-width: 0;
+}
 .tools ol {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.35rem;
+}
+.tool,
+.tool details {
+  min-width: 0;
 }
 .tool {
   border: 1px solid var(--border);
@@ -676,6 +701,15 @@ button {
 }
 .tool__body {
   padding: 0 0.6rem 0.6rem;
+}
+@media (max-width: 600px) {
+  .tool summary {
+    flex-wrap: wrap;
+    row-gap: 0.2rem;
+  }
+  .tool__args {
+    flex-basis: 100%;
+  }
 }
 .tool__body .label {
   margin-top: 0.5rem;
